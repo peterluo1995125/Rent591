@@ -45,6 +45,10 @@ def get_rental_info():
     for house in houses:
         # Extracting details
         title = house.find('a', class_='link').get('title')
+
+        if "應福華" in title:
+            continue
+
         price = house.find('strong', class_='text-26px').text.strip()
 
         update_info = house.find('span', class_='line', string=lambda text: '更新' in text)
@@ -105,10 +109,10 @@ def job():
     send_rental_updates()
 
 # Schedule the job every 3 hours
-schedule.every(3).hours.do(job)
+#schedule.every(3).hours.do(job)
 
 if __name__ == "__main__":
     job()  # Run it immediately on start
-    while True:
-        schedule.run_pending()
-        time.sleep(1)
+    #while True:
+        #schedule.run_pending()
+        #time.sleep(1)
